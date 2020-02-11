@@ -19,7 +19,6 @@ class Info extends Component {
                     <InfoDuration duration={this.props.duration}>
                         Długość utworu: <b> {`${videoLenghtValidate(this.props.duration)}`}</b>
                     </InfoDuration>
-                    {/* <div>{this.props.urlInput === this.props.urlResponse ? 'dupa' : 'cipa'}</div> */}
                 </InfoContainer>
             </>
         )
