@@ -5,8 +5,6 @@ const cors = require("cors");
 const app = express();
 const port = 4200;
 
-let url = "";
-
 app.use(
     cors({
       origin: 'http://localhost:3000',
@@ -19,12 +17,12 @@ app.use(express.json());
 
 
 app.post("/send", async (req, res) => {
-  url = req.body.id;
+  let url = req.body.id;
   console.log(url);
   if(url === "") return;
 
-  const chuj = await info(url);
-  res.send(chuj);
+  const infoVideo = await info(url);
+  res.send(infoVideo);
 })
 
 

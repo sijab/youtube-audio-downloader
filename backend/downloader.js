@@ -3,16 +3,8 @@ const fs = require("fs");
 const extractAudio = require("ffmpeg-extract-audio");
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require("fluent-ffmpeg");
-const fetch = require("node-fetch");
 
 ffmpeg.setFfmpegPath(ffmpegPath);
-
-
-
-const url_tab = [
-    "https://www.youtube.com/watch?v=OHU80BsabxQ",
-    "https://www.youtube.com/watch?v=wGNCNMf8SWw"
-];
 
 const getVideoInfo = (url) => {
     return new Promise((resolve, reject) => {
