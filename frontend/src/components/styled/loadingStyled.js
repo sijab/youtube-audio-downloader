@@ -8,11 +8,11 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const LoadingContainer = styled.div`
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
-    width:100vw;
-    height: 100vh;
+    width:100%;
+    height: 100%;
     background-color: white;
     opacity: 0.7;
 `;

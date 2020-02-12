@@ -23,7 +23,7 @@ const sendUrl = (url) => {
 const getUrl = (url) => {
     return {
         type: GET_URL,
-        url: url
+        urlInput: url
     }
 }
 

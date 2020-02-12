@@ -8,17 +8,27 @@ const Container = createGlobalStyle`
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(205, 211, 198);
+  background-color: #212121;
+  box-sizing: border-box;
   }
 `;
 
 const WindowContainer = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 70vw;
-    background-color: #8e8e8e;
+    background-color: #272C34;
     min-height: 70vh;
-    border-radius: 50px;
+    /* border-radius: 50px; */
+    padding: 10px 0 40px 0;
+`;
+
+const InfoItemDecoration = styled.div`
+    margin: 20px 0 0 0;
+    border: 5px solid black;
+    display: ${props => props.empty < 1 ? 'none' : 'block'};
+    width: 95%;
 `;
 
 const VideoInfoContainer = styled.div`
@@ -36,6 +46,7 @@ const InputItemContainer = styled.div`
 export {
     Container,
     WindowContainer,
+    InfoItemDecoration,
     VideoInfoContainer,
     InputItemContainer
 }

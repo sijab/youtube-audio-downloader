@@ -27,10 +27,10 @@ const reducer = (state = initialState, action) => {
             }
 
         case GET_URL:
-            console.log(action.url);
+            console.log(action.urlInput);
             return {
                 ...state,
-                urlInput: action.url
+                urlInput: action.urlInput,
             }   
 
         default:

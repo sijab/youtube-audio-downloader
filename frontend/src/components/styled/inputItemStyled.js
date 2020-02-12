@@ -1,12 +1,33 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { TextField } from '@material-ui/core';
 
-const InputAdress = styled.input`
-    width: 50vw;
-    height: 5vh;
-    border-radius: 30px;
-    font-size: 30px;
-    padding: 0 0 0 20px;
-    
+const InputAdress = styled(TextField)`
+
+    input {
+        color: white
+    }
+    label {
+        color: white; 
+    }
+    label.Mui-focused {
+      color: white
+    }
+    .MuiOutlinedInput-root {
+        fieldset {
+            border-color: white; 
+        }
+
+        /* &:hover fieldset {
+        border-color: yellow; 
+        } */
+
+        &.Mui-focused fieldset {
+        border-color: black; 
+        color: white
+        }
+  }
+
+  width: 50vw;
 `;
 
 export {

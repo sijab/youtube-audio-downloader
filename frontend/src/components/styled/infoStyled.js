@@ -9,18 +9,20 @@ const InfoContainer = styled.div`
 `;
 
 const InfoTitle = styled.div`
-    width: 100%;
-    /* border: 2px solid black; */
+    width: 50vw;
+    border: 2px solid black;
     display: ${props => props.title ? 'flex' : 'none'};
     align-items: center;
+    padding: 0 0 0 20px;
 `;
 
 const InfoDuration = styled.div`
     grid-area: 2 / 2 / 3 /3;
-    width: 50vw;;
-    /* border: 2px solid black; */
+    width: 50vw;
+    border: 2px solid black;
     display: ${props => props.duration ? 'flex' : 'none'};
     align-items: center;
+    padding: 0 0 0 20px;
 `;
 
 const ImageDiv = styled.div`
@@ -30,7 +32,8 @@ const ImageDiv = styled.div`
     background-image: url(${props => props.thumbnail});
     background-position: center;
     background-size: cover;
-    /* border: 1px solid red; */
+    border: 3px solid red;
+    margin: 0 0 0 20px;
 `;
 
 export {

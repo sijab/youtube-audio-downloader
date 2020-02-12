@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import InputIttem from './InputItem';
-import { Container, WindowContainer, VideoInfoContainer, InputItemContainer} from "./styled/windowStyled";
+import { Container, WindowContainer, InfoItemDecoration, VideoInfoContainer, InputItemContainer } from "./styled/windowStyled";
 import Info from './Info';
 import Loading from './Loading';
 
@@ -10,7 +10,7 @@ class Window extends Component {
     render() {
         return (
             <>
-            <Container />
+                <Container />
                 <WindowContainer>
                     <InputItemContainer>
                         <InputIttem />
@@ -18,16 +18,18 @@ class Window extends Component {
 
                     {this.props.urlInput === this.props.urlResponse ? null : <Loading />}
 
-                    {this.props.videoObject.map(item => (
-                        <VideoInfoContainer key={item.id}>
-                            <Info
-                                title={item.title}
-                                thumbnail={item.thumbnail}
-                                duration={item.duration}
-                                urlResponse={item.urlResponse}
-                                urlInput = {this.props.urlInput} />
-                        </VideoInfoContainer>
-                    ))}
+                    <InfoItemDecoration empty = {this.props.videoObject.length}>
+                        {this.props.videoObject.map(item => (
+                            <VideoInfoContainer key={item.id}>
+                                <Info
+                                    title={item.title}
+                                    thumbnail={item.thumbnail}
+                                    duration={item.duration}
+                                    urlResponse={item.urlResponse}
+                                    urlInput={this.props.urlInput} />
+                            </VideoInfoContainer>
+                        ))}
+                    </InfoItemDecoration>
                 </WindowContainer>
             </>
         )
