@@ -22,7 +22,7 @@ class InputItem extends Component {
                 onClick = {() => { 
                     this.props.startLoading(); 
                     this.props.sendUrl(this.props.urlInput)}
-                }>DODAJ</InputButton>
+                }>ADD</InputButton>
 
             </>
         )

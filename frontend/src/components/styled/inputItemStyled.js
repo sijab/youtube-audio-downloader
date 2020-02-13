@@ -38,6 +38,7 @@ const InputButton = styled(Button)`
         color: white;
         margin: 0 0 0 20px;
         border-color: white;
+        width: 100px;
         &:hover {
             background-color: gray;
         }

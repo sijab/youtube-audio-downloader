@@ -1,7 +1,8 @@
-import { GET_INFO, GET_URL, START_LOADING } from "../action/actionConst";
+import { GET_INFO, GET_URL, START_LOADING, REMOVE_ITEM } from "../action/actionConst";
 
 const initialState = {
-    videoObject: [ ],
+    videoObject: [],
+    newId: 0,
     urlInput: "",
     loading: false
 };
@@ -13,10 +14,11 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 loading: action.loading,
+                newId: state.newId + 1,
                 videoObject: [
                     ...state.videoObject,
                     {
-                        id: action.id,
+                        id: state.newId,
                         title: action.title,
                         thumbnail: action.thumbnail,
                         duration: action.duration,
@@ -36,6 +38,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: action.loading
+            }
+
+        case REMOVE_ITEM:
+            return {
+                ...state,
+                videoObject: state.videoObject.filter(item => action.remove !== item.id)
             }
 
         default:

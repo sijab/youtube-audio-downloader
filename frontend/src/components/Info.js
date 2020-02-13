@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import videoLenghtValidate from '../common/durationValidate';
-import { InfoContainer, InfoTitle, InfoDuration, ImageDiv} from './styled/infoStyled';
+import { InfoContainer, InfoTitle, InfoDuration, ImageDiv, TrashButton } from './styled/infoStyled';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+
+
+
 
 class Info extends Component {
 
     render() {
         return (
             <>
-            {/* {`${this.props.urlInput}`} <br/>
-            {`${this.props.urlResponse}`} <br/> */}
                 <InfoContainer>
                     <ImageDiv thumbnail={this.props.thumbnail} />
 
@@ -19,6 +21,10 @@ class Info extends Component {
                     <InfoDuration duration={this.props.duration}>
                         Długość utworu: <b> {`${videoLenghtValidate(this.props.duration)}`}</b>
                     </InfoDuration>
+
+                    <TrashButton onClick = {this.props.remove}>
+                        <DeleteForeverIcon fontSize = "large"/>
+                    </TrashButton>
                 </InfoContainer>
             </>
         )

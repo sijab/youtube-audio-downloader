@@ -1,9 +1,11 @@
 const GET_INFO = "GET_INFO";
 const GET_URL = "GET_URL";
 const START_LOADING = "START_LOADING";
+const REMOVE_ITEM = "REMOVE_ITEM";
 
 export {
     GET_INFO,
     GET_URL,
-    START_LOADING
+    START_LOADING,
+    REMOVE_ITEM
 }

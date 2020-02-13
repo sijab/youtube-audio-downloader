@@ -1,4 +1,4 @@
-import { GET_INFO, GET_URL, START_LOADING } from './actionConst';
+import { GET_INFO, GET_URL, START_LOADING, REMOVE_ITEM } from './actionConst';
 import axios from 'axios';
 
 const sendUrl = (url) => {
@@ -10,7 +10,6 @@ const sendUrl = (url) => {
             console.log(response);
             dispatch({
                 type: GET_INFO,
-                id: response.data.id,
                 title: response.data.title,
                 thumbnail: response.data.thumbnail,
                 duration: response.data.duration,
@@ -35,9 +34,16 @@ const startLoading = () => {
     }
 }
 
+const removeItem = (value) => {
+    return {
+        type: REMOVE_ITEM,
+        remove: value
+    }
+}
 
 export {
     sendUrl,
     getUrl,
-    startLoading
+    startLoading,
+    removeItem
 }
