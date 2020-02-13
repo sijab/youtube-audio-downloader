@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { sendUrl, getUrl } from '../action/action';
+import { sendUrl, getUrl, startLoading } from '../action/action';
 import { connect } from 'react-redux';
-import { InputAdress } from './styled/inputItemStyled';
+import { InputAdress, InputButton } from './styled/inputItemStyled';
 
 
 class InputItem extends Component {
@@ -11,23 +11,33 @@ class InputItem extends Component {
         return (
             <>
                 <InputAdress 
+                    value = {this.props.urlInput}
                     id="outlined-basic" 
                     label="Podaj URL" 
                     variant="outlined"
-                    onChange = {e => { this.props.getUrl(e.target.value); this.props.sendUrl(e.target.value)}}
+                    onChange = {e => this.props.getUrl(e.target.value)}
                 />
+
+                <InputButton variant="outlined" 
+                onClick = {() => { 
+                    this.props.startLoading(); 
+                    this.props.sendUrl(this.props.urlInput)}
+                }>DODAJ</InputButton>
+
             </>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    url: state.url
+    urlInput: state.urlInput,
+    loading: state.loading
 })
 
 const mapDispatchToProps = {
     sendUrl,
-    getUrl
+    getUrl,
+    startLoading
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputItem);

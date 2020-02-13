@@ -19,7 +19,7 @@ app.use(express.json());
 app.post("/send", async (req, res) => {
   let url = req.body.id;
   console.log(url);
-  if(url === "") return;
+  if(url === "" || url === undefined) return;
 
   const infoVideo = await info(url);
   res.send(infoVideo);

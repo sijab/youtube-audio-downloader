@@ -1,4 +1,4 @@
-import { GET_INFO, GET_URL } from './actionConst';
+import { GET_INFO, GET_URL, START_LOADING } from './actionConst';
 import axios from 'axios';
 
 const sendUrl = (url) => {
@@ -14,7 +14,7 @@ const sendUrl = (url) => {
                 title: response.data.title,
                 thumbnail: response.data.thumbnail,
                 duration: response.data.duration,
-                urlResponse: response.data.url
+                loading: false
             })
         })
     }
@@ -23,12 +23,21 @@ const sendUrl = (url) => {
 const getUrl = (url) => {
     return {
         type: GET_URL,
-        urlInput: url
+        urlInput: url,
+    }
+}
+
+const startLoading = () => {
+    console.log("type");
+    return {
+        type: START_LOADING,
+        loading: true
     }
 }
 
 
 export {
     sendUrl,
-    getUrl
+    getUrl,
+    startLoading
 }

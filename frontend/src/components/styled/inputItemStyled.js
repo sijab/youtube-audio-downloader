@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { TextField } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const InputAdress = styled(TextField)`
 
@@ -22,7 +23,7 @@ const InputAdress = styled(TextField)`
         } */
 
         &.Mui-focused fieldset {
-        border-color: black; 
+        border-color: #050607; 
         color: white
         }
   }
@@ -30,6 +31,20 @@ const InputAdress = styled(TextField)`
   width: 50vw;
 `;
 
+
+
+const InputButton = styled(Button)`
+    && {
+        color: white;
+        margin: 0 0 0 20px;
+        border-color: white;
+        &:hover {
+            background-color: gray;
+        }
+    }
+`;
+
 export {
-    InputAdress
+    InputAdress,
+    InputButton
 }

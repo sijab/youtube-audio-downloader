@@ -1,11 +1,5 @@
-import styled, { keyframes, createGlobalStyle  } from 'styled-components';
+import styled, { keyframes  } from 'styled-components';
 
-const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Montserrat');
-  body {
-    font-family: 'Montserrat', sans-serif;
-  }
-`;
 
 const LoadingContainer = styled.div`
     position: fixed;
@@ -13,8 +7,8 @@ const LoadingContainer = styled.div`
     right: 0;
     width:100%;
     height: 100%;
-    background-color: white;
-    opacity: 0.7;
+    background-color: #717070;
+    opacity: 0.5;
 `;
 
 const Wrapper = styled.div`
@@ -65,6 +59,7 @@ const Bounceball = styled.div`
 `;
 
 const Text = styled.div`
+    font-family: 'Montserrat', sans-serif;
     color: #fbae17;
     display: inline-block;
     margin-left: 5px;
@@ -73,7 +68,6 @@ const Text = styled.div`
 `;
 
 export {
-    GlobalStyles,
     LoadingContainer,
     Wrapper,
     Bounceball,

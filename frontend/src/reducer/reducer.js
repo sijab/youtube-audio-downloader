@@ -1,19 +1,18 @@
-import { GET_INFO, GET_URL } from "../action/actionConst";
+import { GET_INFO, GET_URL, START_LOADING } from "../action/actionConst";
 
 const initialState = {
     videoObject: [ ],
     urlInput: "",
-    urlResponse: ""
+    loading: false
 };
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
 
         case GET_INFO:
-            console.log(action.urlResponse);
             return{
                 ...state,
-                urlResponse: action.urlResponse,
+                loading: action.loading,
                 videoObject: [
                     ...state.videoObject,
                     {
@@ -21,7 +20,6 @@ const reducer = (state = initialState, action) => {
                         title: action.title,
                         thumbnail: action.thumbnail,
                         duration: action.duration,
-                        urlResponse: action.urlResponse
                     }
                 ]
             }
@@ -31,7 +29,14 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 urlInput: action.urlInput,
-            }   
+            }  
+            
+            
+        case START_LOADING:
+            return {
+                ...state,
+                loading: action.loading
+            }
 
         default:
             return state;
