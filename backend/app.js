@@ -1,9 +1,14 @@
 const info = require("./downloader").getVideoInfo;
+const downloader = require("./downloader").downloader;
 const express = require("express");
 const cors = require("cors");
+const zip = require("express-easy-zip");
 
 const app = express();
 const port = 4200;
+
+let downloadEnd;
+
 
 app.use(
     cors({
@@ -14,15 +19,24 @@ app.use(
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(zip());
 
 
 app.post("/send", async (req, res) => {
-  let url = req.body.id;
-  console.log(url);
-  if(url === "" || url === undefined) return;
-
-  const infoVideo = await info(url);
+  const infoVideo = await info(req.body.id);
   res.send(infoVideo);
+})
+
+app.post("/urlsend", async (req, res) => {
+  downloadEnd = await downloader(req.body.url)
+  console.log(downloadEnd);
+
+})
+
+app.get("/a", (req, res) => {
+  res.zip({
+    files: downloadEnd
+  });
 })
 
 

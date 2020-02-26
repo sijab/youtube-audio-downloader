@@ -1,10 +1,13 @@
-import { GET_INFO, GET_URL, START_LOADING, REMOVE_ITEM } from "../action/actionConst";
+import { GET_INFO, GET_URL, START_LOADING, REMOVE_ITEM, RESET_INPUT, ERROR, URL_ARRAY_SEND } from "../action/actionConst";
 
 const initialState = {
     videoObject: [],
+    videoUrlArray: [],
     newId: 0,
     urlInput: "",
-    loading: false
+    loading: false,
+    error: false,
+    downloadEnd: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,10 +30,16 @@ const reducer = (state = initialState, action) => {
             }
 
         case GET_URL:
-            console.log(action.urlInput);
+            // console.log(action.urlInput);
+            console.log(state.videoUrlArray);
             return {
                 ...state,
+                error: false,
                 urlInput: action.urlInput,
+                videoUrlArray: [
+                    ...state.videoUrlArray,
+                    action.urlInput
+                ]
             }  
             
             
@@ -44,6 +53,27 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 videoObject: state.videoObject.filter(item => action.remove !== item.id)
+            }
+
+        case RESET_INPUT:
+            return {
+                ...state,
+                urlInput: ""
+            }
+
+        case ERROR:
+            console.log("error");
+            return {
+                ...state,
+                loading: false,
+                error: true
+            }
+
+        case URL_ARRAY_SEND:
+            console.log("dupa");
+            return {
+                ...state,
+                downloadEnd: action.downloadEnd
             }
 
         default:

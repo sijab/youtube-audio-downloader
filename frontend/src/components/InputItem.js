@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { sendUrl, getUrl, startLoading } from '../action/action';
+import { sendUrl, getUrl, startLoading, resetInput } from '../action/action';
 import { connect } from 'react-redux';
 import { InputAdress, InputButton } from './styled/inputItemStyled';
 
@@ -11,9 +11,10 @@ class InputItem extends Component {
         return (
             <>
                 <InputAdress 
+                    error = {this.props.error}
                     value = {this.props.urlInput}
                     id="outlined-basic" 
-                    label="Podaj URL" 
+                    label="Podaj URL"
                     variant="outlined"
                     onChange = {e => this.props.getUrl(e.target.value)}
                 />
@@ -21,7 +22,9 @@ class InputItem extends Component {
                 <InputButton variant="outlined" 
                 onClick = {() => { 
                     this.props.startLoading(); 
-                    this.props.sendUrl(this.props.urlInput)}
+                    this.props.sendUrl(this.props.urlInput);
+                    this.props.resetInput();
+                }
                 }>ADD</InputButton>
 
             </>
@@ -31,13 +34,15 @@ class InputItem extends Component {
 
 const mapStateToProps = (state) => ({
     urlInput: state.urlInput,
-    loading: state.loading
+    loading: state.loading,
+    error: state.error
 })
 
 const mapDispatchToProps = {
     sendUrl,
     getUrl,
-    startLoading
+    startLoading,
+    resetInput
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputItem);

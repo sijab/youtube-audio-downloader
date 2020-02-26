@@ -27,8 +27,8 @@ const InfoDuration = styled.div`
 
 const ImageDiv = styled.div`
     grid-area: 1 / 1 / 3 / 2;
-    width: ${props => props.thumbnail === "" ? '' : "150px"};
-    height: ${props => props.thumbnail === "" ? '' : "100px"};
+    width: ${props => props.thumbnail === "" ? '' : "200px"};
+    height: ${props => props.thumbnail === "" ? '' : "150px"};
     background-image: url(${props => props.thumbnail});
     background-position: center;
     background-size: cover;

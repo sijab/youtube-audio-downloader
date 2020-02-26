@@ -21,7 +21,7 @@ const WindowContainer = styled.div`
   width: 70vw;
   background-color: #272C34;
   min-height: 70vh;
-  /* border-radius: 50px; */
+  border-radius: 5px;
   padding: 10px 0 40px 0;
 `;
 
