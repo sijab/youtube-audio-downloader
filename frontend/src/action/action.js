@@ -63,13 +63,6 @@ const sendUrlToBackend = (urlArray) => {
         .then(res => {
             // console.log(res);
 
-            const url = window.URL.createObjectURL(new Blob([res.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `test.zip`);
-            document.body.appendChild(link);
-            link.click();
-
             dispatch({
                 type: URL_ARRAY_SEND,
                 downloadEnd: res.data
