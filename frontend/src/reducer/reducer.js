@@ -70,7 +70,6 @@ const reducer = (state = initialState, action) => {
             }
 
         case URL_ARRAY_SEND:
-            console.log("dupa");
             return {
                 ...state,
                 downloadEnd: action.downloadEnd
