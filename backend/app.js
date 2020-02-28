@@ -25,7 +25,7 @@ app.use(zip());
 app.post("/send", async (req, res) => {
   const infoVideo = await info(req.body.id);
   console.log(req.body.id);
-  res.send(infoVideo);s
+  res.send(infoVideo);
 })
 
 app.post("/urlsend", async (req, res) => {

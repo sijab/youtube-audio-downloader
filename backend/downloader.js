@@ -1,5 +1,5 @@
 const youtubedl = require("youtube-dl");
-const fs = require("fs");
+const fs = require("fs-extra");
 const extractAudio = require("ffmpeg-extract-audio");
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require("fluent-ffmpeg");
@@ -24,6 +24,18 @@ const getVideoInfo = (url) => {
 
 const downloader = async (url_tab) => {
 
+    const removeAllFolders = () => {
+        fs.remove("./download/", err => {
+            if(err) throw err;
+        })
+
+        fs.remove("./audioFiles/", err => {
+            if(err) throw err;
+        })
+    }   
+
+    removeAllFolders();
+
     const getVideoTitle = (adr) => {
         const promiseArray = [];
         for (let i = 0; i < adr.length; i++) {
@@ -38,6 +50,12 @@ const downloader = async (url_tab) => {
         }
         return Promise.all(promiseArray);
     }
+ 
+    const directionaryExist = (dir) => {
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+        }
+    }
 
     const downloadAndConvertAudio = async () => {
         const tab = await getVideoTitle(url_tab);
@@ -46,15 +64,18 @@ const downloader = async (url_tab) => {
             tab.forEach((value, index, array) => {
                 const video = youtubedl(url_tab[index], ['--format=18']);
     
-                video.pipe(fs.createWriteStream(`${__dirname}/download/${value}.mp4`, { flags: 'a' }))
+                directionaryExist("./download/");
+                directionaryExist("./audioFiles/");
+
+                video.pipe(fs.createWriteStream(`./download/${value}.mp4`, { flags: 'a' }))
     
                 video.on('end', function () {
                     extractAudio({
-                        input: `${__dirname}/download/${value}.mp4`,
-                        output: `${__dirname}/audioFiles/${value}.mp3`
+                        input: `./download/${value}.mp4`,
+                        output: `./audioFiles/${value}.mp3`
                     }).then(() => {
-                        fs.unlinkSync(`${__dirname}/download/${value}.mp4`);
-                        console.log(`${__dirname}/audioFiles/${value}.mp3 is converted     ${index}`);
+                        fs.unlinkSync(`./download/${value}.mp4`);
+                        console.log(`./audioFiles/${value}.mp3 is converted     ${index}`);
                         if (index === array.length - 1) resolve(true);
                     });
                 })
@@ -81,12 +102,8 @@ const downloader = async (url_tab) => {
             }
         })
     }
-
-
-    
     
     const zipPath = await makeZipPath();
-
     return zipPath;
 }
 
