@@ -4,7 +4,7 @@ import InputIttem from './InputItem';
 import { Container, WindowContainer, InfoItemDecoration, VideoInfoContainer, InputItemContainer, DownloadButton } from "./styled/windowStyled";
 import Info from './Info';
 import Loading from './Loading';
-import { removeItem, sendUrlToBackend } from '../action/action';
+import { removeItem, sendUrlToBackend, startDownload } from '../action/action';
 
 class Window extends Component {
 
@@ -12,7 +12,6 @@ class Window extends Component {
         return (
             <>
                 <Container />
-                <h1> {this.props.downloadEnd ? "tru" : "fals"} </h1>
                 <WindowContainer>
                     <InputItemContainer>
                         <InputIttem />
@@ -33,7 +32,10 @@ class Window extends Component {
                         ))}
                     </InfoItemDecoration>
                     <DownloadButton 
-                        onClick = {() => this.props.sendUrlToBackend(this.props.videoUrlArray)}
+                        onClick = {() => {
+                            this.props.startDownload()
+                            this.props.sendUrlToBackend(this.props.videoUrlArray)
+                        }}
                         variant="outlined" 
                         empty = {this.props.videoObject.length}
                     >DOWNLOAD</DownloadButton>
@@ -50,12 +52,13 @@ const mapStateToProps = (state) => ({
     duration: state.duration,
     loading: state.loading,
     videoUrlArray: state.videoUrlArray,
-    downloadEnd: state.downloadEnd
+    downloadStart: state.downloadStart
 })
 
 const mapDispatchToProps = {
     removeItem,
-    sendUrlToBackend
+    sendUrlToBackend,
+    startDownload
 }
 
 

@@ -5,6 +5,7 @@ const REMOVE_ITEM = "REMOVE_ITEM";
 const RESET_INPUT = "RESET_INPUT";
 const ERROR = "ERROR";
 const URL_ARRAY_SEND = "URL_ARRAY_SEND";
+const START_DOWNLOAD = "START_DOWNLOAD";
 
 export {
     GET_INFO,
@@ -13,5 +14,6 @@ export {
     REMOVE_ITEM,
     RESET_INPUT,
     ERROR,
-    URL_ARRAY_SEND
+    URL_ARRAY_SEND,
+    START_DOWNLOAD
 }

@@ -24,21 +24,22 @@ app.use(zip());
 
 app.post("/send", async (req, res) => {
   const infoVideo = await info(req.body.id);
-  res.send(infoVideo);
+  console.log(req.body.id);
+  res.send(infoVideo);s
 })
 
 app.post("/urlsend", async (req, res) => {
   downloadEnd = await downloader(req.body.url)
   console.log(downloadEnd);
-
+  res.sendStatus(200);
 })
 
-app.get("/a", (req, res) => {
+app.get("/getfiles", (req, res) => {
   res.zip({
-    files: downloadEnd
+    files: downloadEnd,
+    filename: "test.zip"
   });
 })
-
 
 
 app.listen(port, () => console.log(`App listen on port ${port}`));

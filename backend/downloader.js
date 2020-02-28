@@ -67,7 +67,7 @@ const downloader = async (url_tab) => {
         let zipArray = [];
 
         return new Promise((resolve, reject) => {
-            if(!!downloadEnd) {
+            if(downloadEnd) {
                 fs.readdir(`${__dirname}/audioFiles`, (err, files) => {
                     if(err) throw err;
     
@@ -81,14 +81,13 @@ const downloader = async (url_tab) => {
             }
         })
     }
+
+
     
     
     const zipPath = await makeZipPath();
-    
-    return new Promise((resolve) => {
-        resolve(zipPath);
-    })
 
+    return zipPath;
 }
 
 module.exports = {
