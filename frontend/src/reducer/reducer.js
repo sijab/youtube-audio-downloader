@@ -1,4 +1,4 @@
-import { GET_INFO, GET_URL, START_LOADING, REMOVE_ITEM, RESET_INPUT, ERROR, URL_ARRAY_SEND, START_DOWNLOAD } from "../action/actionConst";
+import { GET_INFO, GET_URL, START_LOADING, REMOVE_ITEM, RESET_INPUT, ERROR, URL_ARRAY_SEND, START_DOWNLOAD, MAKE_URLS_ARRAY } from "../action/actionConst";
 
 const initialState = {
     videoObject: [],
@@ -30,19 +30,24 @@ const reducer = (state = initialState, action) => {
             }
 
         case GET_URL:
-            // console.log(action.urlInput);
-            console.log(state.videoUrlArray);
             return {
                 ...state,
                 error: false,
                 urlInput: action.urlInput,
-                videoUrlArray: [
-                    ...state.videoUrlArray,
-                    action.urlInput
-                ]
-            }  
+            }
             
-            
+        case MAKE_URLS_ARRAY:
+            if(state.error) return state;
+            else {
+                return {
+                    ...state,
+                    videoUrlArray: [
+                        ...state.videoUrlArray,
+                        action.urlArr
+                    ]
+                }
+            }
+
         case START_LOADING:
             return {
                 ...state,
@@ -62,7 +67,6 @@ const reducer = (state = initialState, action) => {
             }
 
         case ERROR:
-            console.log("error");
             return {
                 ...state,
                 loading: false,

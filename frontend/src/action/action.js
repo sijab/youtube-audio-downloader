@@ -1,4 +1,4 @@
-import { GET_INFO, GET_URL, START_LOADING, REMOVE_ITEM, RESET_INPUT, ERROR, URL_ARRAY_SEND, START_DOWNLOAD } from './actionConst';
+import { GET_INFO, GET_URL, START_LOADING, REMOVE_ITEM, RESET_INPUT, ERROR, URL_ARRAY_SEND, START_DOWNLOAD, MAKE_URLS_ARRAY } from './actionConst';
 import axios from 'axios';
 import youTubeUrlValidation from '../helpers/urlValidate';
 
@@ -9,7 +9,6 @@ const sendUrl = (url) => {
                 id: url
             })
                 .then(response => {
-                    console.log(response);
                     dispatch({
                         type: GET_INFO,
                         title: response.data.title,
@@ -33,8 +32,14 @@ const getUrl = (url) => {
     }
 }
 
+const makeUrlsArray = (url) => {
+    return {
+        type: MAKE_URLS_ARRAY,
+        urlArr: url
+    }
+}
+
 const startLoading = () => {
-    console.log("type");
     return {
         type: START_LOADING,
         loading: true
@@ -86,5 +91,6 @@ export {
     removeItem,
     resetInput,
     sendUrlToBackend,
-    startDownload
+    startDownload,
+    makeUrlsArray
 }

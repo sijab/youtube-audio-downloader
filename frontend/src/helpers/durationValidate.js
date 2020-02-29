@@ -1,4 +1,4 @@
-const videoLenghtValidate = (duration) => {
+const videoLengthValidate = (duration) => {
 
     const part = duration.split(":");
     let first = parseInt(part[0], 10);
@@ -13,4 +13,4 @@ const videoLenghtValidate = (duration) => {
     else return [first, second, third].join(":");
 }
 
-export default videoLenghtValidate;
+export default videoLengthValidate;
