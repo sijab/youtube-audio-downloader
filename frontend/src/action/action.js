@@ -20,7 +20,9 @@ const sendUrl = (url) => {
         }
     } else {
         return {
-            type: ERROR
+            type: ERROR,
+            loading: false,
+            error: true
         }
     }
 }
@@ -28,6 +30,7 @@ const sendUrl = (url) => {
 const getUrl = (url) => {
     return {
         type: GET_URL,
+        error: false,
         urlInput: url,
     }
 }

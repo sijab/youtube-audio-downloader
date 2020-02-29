@@ -32,7 +32,7 @@ const reducer = (state = initialState, action) => {
         case GET_URL:
             return {
                 ...state,
-                error: false,
+                error: action.error,
                 urlInput: action.urlInput,
             }
             
@@ -69,8 +69,8 @@ const reducer = (state = initialState, action) => {
         case ERROR:
             return {
                 ...state,
-                loading: false,
-                error: true
+                loading: action.loading,
+                error: action.error
             }
 
         case URL_ARRAY_SEND:

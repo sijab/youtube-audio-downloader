@@ -24,11 +24,13 @@ app.use(zip());
 
 app.post("/send", async (req, res) => {
   const infoVideo = await info(req.body.id);
+  console.log(req.body.id);
   res.send(infoVideo);
 })
 
 app.post("/urlsend", async (req, res) => {
   downloadEnd = await downloader(req.body.url)
+  console.log(downloadEnd);
   res.sendStatus(200);
 })
 
