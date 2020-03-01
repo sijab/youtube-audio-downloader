@@ -3,6 +3,8 @@ const downloader = require("./downloader").downloader;
 const express = require("express");
 const cors = require("cors");
 const zip = require("express-easy-zip");
+const { formatDate, formatTime } = require("./helpers/dateAndTimeFormat");
+
 
 const app = express();
 const port = 4200;
@@ -37,9 +39,20 @@ app.post("/urlsend", async (req, res) => {
 app.get("/getfiles", (req, res) => {
   res.zip({
     files: downloadEnd,
-    filename: "test.zip"
+    filename: `${formatDate()} ${formatTime()} Mp3Rub.zip`
   });
 })
 
+app.listen(port, () => console.log(`App listen on port ${port} `));
 
-app.listen(port, () => console.log(`App listen on port ${port}`));
+
+
+
+
+
+
+
+
+
+
+
