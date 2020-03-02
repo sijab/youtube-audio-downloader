@@ -74,7 +74,6 @@ const downloader = async (url_tab) => {
                         input: `./download/${value}.mp4`,
                         output: `./audioFiles/${value}.mp3`
                     }).then(() => {
-                        fs.unlinkSync(`./download/${value}.mp4`);
                         console.log(`./audioFiles/${value}.mp3 is converted     ${index}`);
                         if (index === array.length - 1) resolve(true);
                     });

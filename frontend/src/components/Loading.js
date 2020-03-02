@@ -4,13 +4,13 @@ import { LoadingContainer, Wrapper, Bounceball, Text } from './styled/loadingSty
 class Loading extends Component {
 
     render() {
-        return(
+        return (
             <>
                 <LoadingContainer>
                     <Wrapper>
                         <div>
                             <Bounceball />
-                            <Text>Loading</Text>
+                            <Text>{`${this.props.name}`}</Text>
                         </div>
                     </Wrapper>
                 </LoadingContainer>
