@@ -8,7 +8,7 @@ const LoadingContainer = styled.div`
     width:100%;
     height: 100%;
     background-color: #717070;
-    opacity: 0.5;
+    opacity: 0.7;
 `;
 
 const Wrapper = styled.div`

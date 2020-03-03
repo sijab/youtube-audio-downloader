@@ -19,6 +19,7 @@ class Window extends Component {
 
                     {this.props.downloadStart ? <Loading name = {`Download`} /> : null }
                     {this.props.loading ? <Loading name = {`Loading`} /> : null }
+                    {/* <Loading name = {`Loading`} /> */}
 
                     <InfoItemDecoration empty = {this.props.videoObject.length}>
                         {this.props.videoObject.map((item, index)=> (
