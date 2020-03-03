@@ -2,7 +2,7 @@
 
 ## How to run
 
-```node 
+```
 * clone project
 * npm install -g nodemon
 * npm install
