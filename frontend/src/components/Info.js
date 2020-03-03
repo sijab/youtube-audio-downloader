@@ -15,11 +15,11 @@ class Info extends Component {
                     <ImageDiv thumbnail={this.props.thumbnail} />
 
                     <InfoTitle title={this.props.title}>
-                        Nazwa utworu: <b> {` ${this.props.title}`}</b>
+                        Nazwa utworu: &nbsp; <b> {` ${this.props.title}`}</b>
                     </InfoTitle>
 
                     <InfoDuration duration={this.props.duration}>
-                        Długość utworu: <b> {`${videoLengthValidate(this.props.duration)}`}</b>
+                        Długość utworu: &nbsp; <b> {`${videoLengthValidate(this.props.duration)}`}</b>
                     </InfoDuration>
 
                     <TrashButton onClick = {this.props.remove}>
