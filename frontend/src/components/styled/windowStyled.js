@@ -53,6 +53,7 @@ const DownloadButton = styled(Button)`
     color: white;
     display: ${props => props.empty < 1 ? 'none' : 'block'};
     margin-top: 30px;
+    /* z-index: -1; */
   }
 `;
 

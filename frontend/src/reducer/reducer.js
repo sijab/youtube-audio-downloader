@@ -30,6 +30,7 @@ const reducer = (state = initialState, action) => {
             }
 
         case GET_URL:
+            console.log(state.videoUrlArray);
             return {
                 ...state,
                 error: action.error,
@@ -37,6 +38,7 @@ const reducer = (state = initialState, action) => {
             }
             
         case MAKE_URLS_ARRAY:
+            console.log(state.videoUrlArray);
             if(state.error) return state;
             else {
                 return {
@@ -55,9 +57,11 @@ const reducer = (state = initialState, action) => {
             }
 
         case REMOVE_ITEM:
+            console.log(state.videoUrlArray);
             return {
                 ...state,
-                videoObject: state.videoObject.filter(item => action.remove !== item.id)
+                videoObject: state.videoObject.filter(item => action.remove !== item.id),
+                videoUrlArray: state.videoUrlArray.filter((item, index, array) =>  array[action.remove] !== item )
             }
 
         case RESET_INPUT:

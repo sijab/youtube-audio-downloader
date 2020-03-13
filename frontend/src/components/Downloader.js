@@ -6,7 +6,7 @@ class Downloader extends Component {
     render() {
         return (
             <>
-                <Logo>YTDL MP3 DOWNLOADER</Logo>
+                <Logo> YTDL MP3 DOWNLOADER </Logo>
                 <WindowContainer>
                     <Window />
                 </WindowContainer>

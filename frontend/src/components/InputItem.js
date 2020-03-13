@@ -6,25 +6,28 @@ import { InputAdress, InputButton } from './styled/inputItemStyled';
 
 class InputItem extends Component {
 
-
     render() {
+
+        const { error, urlInput } = this.props;
+        const { getUrl, startLoading, sendUrl, makeUrlsArray, resetInput } = this.props;
+
         return (
             <>
                 <InputAdress 
-                    error = {this.props.error}
-                    value = {this.props.urlInput}
+                    error = { error }
+                    value = { urlInput }
                     id="outlined-basic" 
                     label="Podaj URL"
                     variant="outlined"
-                    onChange = {e => this.props.getUrl(e.target.value)}
+                    onChange = {e => getUrl(e.target.value)}
                 />
 
                 <InputButton variant="outlined" 
                 onClick = {() => { 
-                    this.props.startLoading(); 
-                    this.props.sendUrl(this.props.urlInput);
-                    this.props.makeUrlsArray(this.props.urlInput);
-                    this.props.resetInput();
+                    startLoading(); 
+                    sendUrl( urlInput );
+                    makeUrlsArray( urlInput );
+                    resetInput();
                 }
                 }>ADD</InputButton>
 

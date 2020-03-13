@@ -9,6 +9,10 @@ import { removeItem, sendUrlToBackend, startDownload } from '../action/action';
 class Window extends Component {
 
     render() {
+
+        const { downloadStart, loading, videoObject, videoUrlArray } = this.props;
+        const { removeItem, startDownload, sendUrlToBackend } = this.props;
+
         return (
             <>
                 <Container />
@@ -17,29 +21,29 @@ class Window extends Component {
                         <InputIttem />
                     </InputItemContainer>
 
-                    {this.props.downloadStart ? <Loading name = {`Download`} /> : null }
-                    {this.props.loading ? <Loading name = {`Loading`} /> : null }
-                    {/* <Loading name = {`Loading`} /> */}
 
-                    <InfoItemDecoration empty = {this.props.videoObject.length}>
-                        {this.props.videoObject.map((item, index)=> (
+                    {downloadStart ? <Loading name = {`Download`} /> : null }
+                    {loading ? <Loading name = {`Loading`} /> : null }
+
+                    <InfoItemDecoration empty = {videoObject.length}>
+                        {videoObject.map((item, index)=> (
                             <VideoInfoContainer key={index}>
                                 <Info
                                     title={item.title}
                                     thumbnail={item.thumbnail}
                                     duration={item.duration} 
-                                    remove = {() => this.props.removeItem(item.id)}
+                                    remove = {() => removeItem(item.id)}
                                 />
                             </VideoInfoContainer>
                         ))}
                     </InfoItemDecoration>
                     <DownloadButton 
                         onClick = {() => {
-                            this.props.startDownload()
-                            this.props.sendUrlToBackend(this.props.videoUrlArray)
+                            startDownload()
+                            sendUrlToBackend(videoUrlArray)
                         }}
                         variant="outlined" 
-                        empty = {this.props.videoObject.length}
+                        empty = {videoObject.length}
                     >DOWNLOAD</DownloadButton>
                 </WindowContainer>
             </>

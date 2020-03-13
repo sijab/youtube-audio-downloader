@@ -8,7 +8,8 @@ const LoadingContainer = styled.div`
     width:100%;
     height: 100%;
     background-color: #717070;
-    opacity: 0.7;
+    z-index: 1;
+    opacity: 0.9;
 `;
 
 const Wrapper = styled.div`
@@ -52,7 +53,7 @@ const Bounceball = styled.div`
         width: 15px;
         height: 15px;
         border-radius: 50%;
-        background-color: #fbae17;
+        background-color: #000; /*#fbae17;*/
         transform-origin: 50%;
         animation: ${bounce} 500ms alternate infinite ease;
     }
@@ -60,11 +61,12 @@ const Bounceball = styled.div`
 
 const Text = styled.div`
     font-family: 'Montserrat', sans-serif;
-    color: #fbae17;
+    color: #000;
     display: inline-block;
     margin-left: 5px;
-    font-size: 22px;
+    font-size: 25px;
     letter-spacing: 4px;
+    font-weight: bold;
 `;
 
 export {

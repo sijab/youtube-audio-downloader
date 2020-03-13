@@ -5,8 +5,8 @@ const Logo = styled.div`
   margin: 30px 0 30px 0;
   text-align: center;
   font-size: 50px;
-  /* font-weight: bold; */
-  letter-spacing: 15px;
+  font-weight: bold;
+  letter-spacing: 20px;
   color: gray;
 `;
 

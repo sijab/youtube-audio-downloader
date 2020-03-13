@@ -9,20 +9,23 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 class Info extends Component {
 
     render() {
+
+        const { thumbnail, title, duration, remove } = this.props;
+        
         return (
             <>
                 <InfoContainer>
-                    <ImageDiv thumbnail={this.props.thumbnail} />
+                    <ImageDiv thumbnail={ thumbnail } />
 
-                    <InfoTitle title={this.props.title}>
-                        Nazwa utworu: &nbsp; <b> {` ${this.props.title}`}</b>
+                    <InfoTitle title={ title }>
+                        Nazwa utworu: &nbsp; <b> {` ${ title }`}</b>
                     </InfoTitle>
 
-                    <InfoDuration duration={this.props.duration}>
-                        Długość utworu: &nbsp; <b> {`${videoLengthValidate(this.props.duration)}`}</b>
+                    <InfoDuration duration={ duration }>
+                        Długość utworu: &nbsp; <b> {`${videoLengthValidate( duration )}`}</b>
                     </InfoDuration>
 
-                    <TrashButton onClick = {this.props.remove}>
+                    <TrashButton onClick = { remove }>
                         <DeleteForeverIcon fontSize = "large"/>
                     </TrashButton>
                 </InfoContainer>
