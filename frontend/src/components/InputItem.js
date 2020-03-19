@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { sendUrl, getUrl, startLoading, resetInput, makeUrlsArray } from '../action/action';
 import { connect } from 'react-redux';
 import { InputAdress, InputButton } from './styled/inputItemStyled';
-
+import PropTypes from 'prop-types';
 
 class InputItem extends Component {
 
@@ -34,6 +34,16 @@ class InputItem extends Component {
             </>
         )
     }
+}
+
+InputItem.propTypes = {
+    error: PropTypes.bool.isRequired,
+    urlInput: PropTypes.string.isRequired,
+    getUrl: PropTypes.func.isRequired,
+    startLoading: PropTypes.func.isRequired,
+    sendUrl: PropTypes.func.isRequired,
+    makeUrlsArray: PropTypes.func.isRequired,
+    resetInput: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({

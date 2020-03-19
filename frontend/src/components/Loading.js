@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { LoadingContainer, Wrapper, Bounceball, Text } from './styled/loadingStyled';
+import PropTypes from 'prop-types';
 
 class Loading extends Component {
 
@@ -20,6 +21,10 @@ class Loading extends Component {
             </>
         )
     }
+}
+
+Loading.propTypes = {
+    name: PropTypes.string.isRequired
 }
 
 export default Loading;

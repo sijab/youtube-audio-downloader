@@ -5,12 +5,13 @@ import { Container, WindowContainer, InfoItemDecoration, VideoInfoContainer, Inp
 import Info from './Info';
 import Loading from './Loading';
 import { removeItem, sendUrlToBackend, startDownload } from '../action/action';
+import PropTypes from 'prop-types';
 
 class Window extends Component {
 
     render() {
 
-        const { downloadStart, loading, videoObject, videoUrlArray } = this.props;
+        const { downloadStart, loading, videoArray, videoUrlArray } = this.props;
         const { removeItem, startDownload, sendUrlToBackend } = this.props;
 
         return (
@@ -25,8 +26,8 @@ class Window extends Component {
                     {downloadStart ? <Loading name = {`Download`} /> : null }
                     {loading ? <Loading name = {`Loading`} /> : null }
 
-                    <InfoItemDecoration empty = {videoObject.length}>
-                        {videoObject.map((item, index)=> (
+                    <InfoItemDecoration empty = {videoArray.length}>
+                        {videoArray.map((item, index)=> (
                             <VideoInfoContainer key={index}>
                                 <Info
                                     title={item.title}
@@ -43,7 +44,7 @@ class Window extends Component {
                             sendUrlToBackend(videoUrlArray)
                         }}
                         variant="outlined" 
-                        empty = {videoObject.length}
+                        empty = {videoArray.length}
                     >DOWNLOAD</DownloadButton>
                 </WindowContainer>
             </>
@@ -51,8 +52,17 @@ class Window extends Component {
     }
 }
 
+Window.propTypes = {
+    downloadStart: PropTypes.bool.isRequired,
+    loading: PropTypes.bool,
+    videoArray: PropTypes.array.isRequired,
+    removeItem: PropTypes.func.isRequired,
+    startDownload: PropTypes.func.isRequired,
+    sendUrlToBackend: PropTypes.func.isRequired
+}
+
 const mapStateToProps = (state) => ({
-    videoObject: state.videoObject,
+    videoArray: state.videoArray,
     title: state.title,
     thumbnail: state.thumbnail,
     duration: state.duration,

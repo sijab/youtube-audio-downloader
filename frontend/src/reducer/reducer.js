@@ -1,7 +1,7 @@
 import { GET_INFO, GET_URL, START_LOADING, REMOVE_ITEM, RESET_INPUT, ERROR, URL_ARRAY_SEND, START_DOWNLOAD, MAKE_URLS_ARRAY } from "../action/actionConst";
 
 const initialState = {
-    videoObject: [],
+    videoArray: [],
     videoUrlArray: [],
     newId: 0,
     urlInput: "",
@@ -18,8 +18,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: action.loading,
                 newId: state.newId + 1,
-                videoObject: [
-                    ...state.videoObject,
+                videoArray: [
+                    ...state.videoArray,
                     {
                         id: state.newId,
                         title: action.title,
@@ -60,7 +60,7 @@ const reducer = (state = initialState, action) => {
             console.log(state.videoUrlArray);
             return {
                 ...state,
-                videoObject: state.videoObject.filter(item => action.remove !== item.id),
+                videoArray: state.videoArray.filter(item => action.remove !== item.id),
                 videoUrlArray: state.videoUrlArray.filter((item, index, array) =>  array[action.remove] !== item )
             }
 
