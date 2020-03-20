@@ -33,7 +33,7 @@ class Window extends Component {
                                     title={item.title}
                                     thumbnail={item.thumbnail}
                                     duration={item.duration} 
-                                    remove = {() => removeItem(item.id)}
+                                    remove = {() => removeItem(index)}
                                 />
                             </VideoInfoContainer>
                         ))}

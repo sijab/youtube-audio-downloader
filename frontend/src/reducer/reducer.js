@@ -3,7 +3,6 @@ import { GET_INFO, GET_URL, START_LOADING, REMOVE_ITEM, RESET_INPUT, ERROR, URL_
 const initialState = {
     videoArray: [],
     videoUrlArray: [],
-    newId: 0,
     urlInput: "",
     loading: false,
     error: false,
@@ -17,11 +16,9 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 loading: action.loading,
-                newId: state.newId + 1,
                 videoArray: [
                     ...state.videoArray,
                     {
-                        id: state.newId,
                         title: action.title,
                         thumbnail: action.thumbnail,
                         duration: action.duration,
@@ -60,8 +57,8 @@ const reducer = (state = initialState, action) => {
             console.log(state.videoUrlArray);
             return {
                 ...state,
-                videoArray: state.videoArray.filter(item => action.remove !== item.id),
-                videoUrlArray: state.videoUrlArray.filter((item, index, array) =>  array[action.remove] !== item )
+                videoArray: state.videoArray.filter((item, index, array) => array[action.remove] !== item),
+                videoUrlArray: state.videoUrlArray.filter((item, index, array) =>  array[action.remove] !== item)
             }
 
         case RESET_INPUT:

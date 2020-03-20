@@ -60,7 +60,7 @@ const downloader = async (url_tab) => {
                 .audioBitrate(128)
                 .save(`${__dirname}/audioFiles/${audioTitleTab[i]}.mp3`)
                 .on('end', () => {
-                    console.log(`\ndone, thanks - ${(Date.now() - start) / 1000}s`);
+                    // console.log(`\ndone, thanks - ${(Date.now() - start) / 1000}s`);
                     if(i == audioTitleTab.length - 1) resolve(true);
             });
             }
