@@ -64,10 +64,10 @@ const resetInput = () => {
 
 const sendUrlToBackend = (urlArray) => {
     return (dispatch) => {
-        axios.post("http://localhost:4200/urlsend", { url: urlArray })
+        axios.post("http://localhost:4200/url-send", { url: urlArray })
         .then(() => {
             const link = document.createElement('a');
-            link.href = "http://localhost:4200/getfiles";
+            link.href = "http://localhost:4200/get-files";
             document.body.appendChild(link);
             link.click();
 

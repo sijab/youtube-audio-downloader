@@ -1,47 +1,42 @@
-const youtubedl = require("youtube-dl");
+const ytdl = require("ytdl-core");
 const fs = require("fs-extra");
-const extractAudio = require("ffmpeg-extract-audio");
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require("fluent-ffmpeg");
-
 ffmpeg.setFfmpegPath(ffmpegPath);
+
 
 const getVideoInfo = (url) => {
     return new Promise((resolve, reject) => {
-        youtubedl(url, (err, info) => {
+        ytdl.getInfo(url, (err, info) => {
             if (err) reject(err);
             else resolve({
-                id: info.id,
+                id: info.video_id,
                 title: info.title,
-                thumbnail: info.thumbnail,
-                duration: info.duration,
+                thumbnail: info.player_response.videoDetails.thumbnail.thumbnails[3].url,
+                duration: info.player_response.videoDetails.lengthSeconds,
                 url: url
             })
         })
     })
 }
 
-
 const downloader = async (url_tab) => {
+    const makeFolder = () => {
+        fs.removeSync("./audioFiles/");
+        
+        if(!fs.existsSync("./audioFiles/")) {
+            fs.mkdirSync("./audioFiles/");
+        }
+    }
 
-    const removeAllFolders = () => {
-        fs.remove("./download/", err => {
-            if(err) throw err;
-        })
+    makeFolder();
 
-        fs.remove("./audioFiles/", err => {
-            if(err) throw err;
-        })
-    }   
-
-    removeAllFolders();
-
-    const getVideoTitle = (adr) => {
+    const getAudioTitle = (adr) => {
         const promiseArray = [];
         for (let i = 0; i < adr.length; i++) {
             promiseArray.push(
                 new Promise((resolve, reject) => {
-                    youtubedl(adr[i], (err, info) => {
+                    ytdl.getInfo(adr[i], (err, info) => {
                         if (err) reject(err);
                         else resolve(info.title);
                     })
@@ -50,40 +45,30 @@ const downloader = async (url_tab) => {
         }
         return Promise.all(promiseArray);
     }
- 
-    const directionaryExist = (dir) => {
-        if (!fs.existsSync(dir)){
-            fs.mkdirSync(dir);
-        }
-    }
 
-    const downloadAndConvertAudio = async () => {
-        const tab = await getVideoTitle(url_tab);
+    const downloadAudio = async (tab) => {
+        const audioTitleTab = await getAudioTitle(tab);
 
         return new Promise((resolve, reject) => {
-            tab.forEach((value, index, array) => {
-                const video = youtubedl(url_tab[index], ['--format=18']);
-    
-                directionaryExist("./download/");
-                directionaryExist("./audioFiles/");
-
-                video.pipe(fs.createWriteStream(`./download/${value}.mp4`, { flags: 'a' }))
-    
-                video.on('end', function () {
-                    extractAudio({
-                        input: `./download/${value}.mp4`,
-                        output: `./audioFiles/${value}.mp3`
-                    }).then(() => {
-                        console.log(`./audioFiles/${value}.mp3 is converted     ${index}`);
-                        if (index === array.length - 1) resolve(true);
-                    });
+            for (let i = 0; i < tab.length; i++) {
+                const stream = ytdl(tab[i], { 
+                    quality: 'highestaudio' 
                 })
-            })
+        
+            const start = Date.now();
+            ffmpeg(stream)
+                .audioBitrate(128)
+                .save(`${__dirname}/audioFiles/${audioTitleTab[i]}.mp3`)
+                .on('end', () => {
+                    console.log(`\ndone, thanks - ${(Date.now() - start) / 1000}s`);
+                    if(i == audioTitleTab.length - 1) resolve(true);
+            });
+            }
         })
     }
 
-    const makeZipPath = async () => {
-        const downloadEnd = await downloadAndConvertAudio();
+    const makeZipPath = async (tab) => {
+        const downloadEnd = await downloadAudio(tab);
         let zipArray = [];
 
         return new Promise((resolve, reject) => {
@@ -102,7 +87,7 @@ const downloader = async (url_tab) => {
         })
     }
     
-    const zipPath = await makeZipPath();
+    const zipPath = await makeZipPath(url_tab);
     return zipPath;
 }
 
